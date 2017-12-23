@@ -18,8 +18,9 @@ Last revised 2017-12-23
 
 [**CollateX**](https://pypi.python.org/pypi/collatex) has a small number of dependencies that cause problems for some users. Distributing **CollateX** in a [**docker**](https://www.docker.com/) container means that the dependences can be packaged with it. Specifically:
 
-* **CollateX** uses the [**python-Levenshtein**](https://pypi.python.org/pypi/python-Levenshtein) package for support near matching. This package is a C library that is built on the local system, and not all users have installed the compilers the build requires.
-* **CollateX** requires version 1.11 of the [**networkx**](https://pypi.python.org/pypi/networkx) library. By running **CollateX** inside a **docker** container, users who need later versions of **networkx** for other purposes will not have to create a separate environment to support the **networkx** downgrade required by **CollateX**.
+* **CollateX** requires version 1.11 of the [**networkx**](https://pypi.python.org/pypi/networkx) library and the most recent release, 2.0, uses a different API, which breaks **CollateX**. By running **CollateX** inside a **docker** container, users who need later versions of **networkx** for other purposes will not have to downgrade their general Python library installation or create a separate environment to support the **networkx** version required by **CollateX**.
+* **CollateX** uses the [**python-Levenshtein**](https://pypi.python.org/pypi/python-Levenshtein) package to support near matching. This package is a C library that is built on the local system, and not all users have installed the compilers the build requires.
+* **CollateX** uses the [**pygraphviz**](https://pypi.python.org/pypi/pygraphviz) package to support SVG output of the variant graph. Like **python-Levenshtein**, **pygraphviz** has to be compiled on the local machine. 
 
 ## Quickstart
 
