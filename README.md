@@ -3,6 +3,17 @@
 David J. Birnbaum and Ronald Haentjens Dekker  
 Last revised 2017-12-23
 
+----
+## To do
+
+1. Base on **Jupyter notebook**, rather than generic **Python 3**
+2. Start **Jupyter** server inside container
+3. Add instructions for user to create work directory, and modify **Dockerfile** to mount it
+4. Add examples
+
+----
+
+
 ## Rationale
 
 [**CollateX**](https://pypi.python.org/pypi/collatex) has a small number of dependencies that cause problems for some users. Distributing **CollateX** in a [**docker**](https://www.docker.com/) container means that the dependences can be packaged with it. Specifically:
