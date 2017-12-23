@@ -6,7 +6,7 @@ Last revised 2017-12-23
 ----
 ## To do
 
-1. Base on **Jupyter notebook**, rather than generic **Python 3**
+1. Base on **Jupyter notebook**, rather than generic **Python 3** (see <https://github.com/HuygensING/alexandria-workshop-notebooks/blob/master/Dockerfile>)
 2. Start **Jupyter** server inside container
 3. Add instructions for user to create work directory, and modify **Dockerfile** to mount it
 4. Add examples
