@@ -78,4 +78,4 @@ Build documentation from: <https://djangostars.com/blog/what-is-docker-and-how-t
 
 **[To be integrated into documentation if we launch notebook separately and need docker-compose]**
  
-Alexandria uses a docker-compose.yml file, which can be used to launch multiple docker images at the same. See the example at https://github.com/Pittsburgh-NEH-Institute/Institute-Materials-2017/blob/master/schedule/week_3/alexandria.md, which launches three images, and also mounts a file-system entry point for the last of them.
+Alexandria uses a **docker-compose.yml** file, which can be used to launch multiple docker images at the same time. See the example at <https://github.com/Pittsburgh-NEH-Institute/Institute-Materials-2017/blob/master/schedule/week_3/alexandria.md>, which launches three images, and also mounts a file-system entry point for the last of them.
