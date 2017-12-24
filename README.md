@@ -13,7 +13,6 @@ Last revised 2017-12-23
 
 ----
 
-
 ## Rationale
 
 [**CollateX**](https://pypi.python.org/pypi/collatex) has a small number of dependencies that cause problems for some users. Distributing **CollateX** in a [**docker**](https://www.docker.com/) container means that the dependences can be packaged with it. Specifically:
@@ -78,7 +77,7 @@ Command | What it does
 
 ## Explanation
 
-Build documentation from: <https://djangostars.com/blog/what-is-docker-and-how-to-use-it-with-python/>:
+The `build` command uses the following arguments (documentation from <https://djangostars.com/blog/what-is-docker-and-how-to-use-it-with-python/>):
 
 * `-t` flag assigns a pseudo-tty or terminal inside the new container.
 * `-i` flag allows you to make an interactive connection by grabbing the standard input (STDIN) of the container.
