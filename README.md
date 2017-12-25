@@ -1,17 +1,7 @@
 # Running collateX inside a docker container
 
 David J. Birnbaum and Ronald Haentjens Dekker  
-Last revised 2017-12-23
-
-----
-## To do
-
-1. Base on **Jupyter notebook**, rather than generic **Python 3** (see <https://github.com/HuygensING/alexandria-workshop-notebooks/blob/master/Dockerfile>)
-2. Start **Jupyter** server inside container
-3. Add instructions for user to create work directory, and modify **Dockerfile** to mount it
-4. Add examples
-
-----
+Last revised 2017-12-25
 
 ## Rationale
 
@@ -25,7 +15,7 @@ Last revised 2017-12-23
 
 ### Install docker
 
-**[Add instructions, or pointer to external instructions]**
+Check the “What to know before you install” section at [Docker for Mac (CE)](https://docs.docker.com/docker-for-mac/install/) or [Docker for Windows (CE)](https://docs.docker.com/docker-for-windows/install/). If you meet these requirements, install the stable channel release of **Docker CE**. If not, install [**Docker toolbox**](https://docs.docker.com/toolbox/overview/) instead.
 
 ### Configure a docker image
 
@@ -77,7 +67,7 @@ Command | What it does
 
 ## Explanation
 
-The `build` command uses the following arguments (documentation from <https://djangostars.com/blog/what-is-docker-and-how-to-use-it-with-python/>):
+The `build` command uses the following arguments (the explanation below is copied from <https://djangostars.com/blog/what-is-docker-and-how-to-use-it-with-python/>):
 
 * `-t` flag assigns a pseudo-tty or terminal inside the new container.
 * `-i` flag allows you to make an interactive connection by grabbing the standard input (STDIN) of the container.
