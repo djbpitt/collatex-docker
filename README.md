@@ -22,9 +22,11 @@ Check the “What to know before you install” section at [Docker for Mac (CE)]
 Create the following file in an otherwise empty directory, and call it “Dockerfile”:
 
 ```bash
-FROM python:3
+FROM jupyter/datascience-notebook
+USER root
 RUN apt-get -y update
 RUN apt-get -y install graphviz
+USER jovyan
 RUN pip install ipython
 RUN pip install collatex
 RUN pip uninstall -y networkx
@@ -34,6 +36,11 @@ RUN pip install graphviz
 CMD ["bash"]
 ```
 
+Notes
+
+* `apt-get` must run as root. 
+* The user created by the jupyter base image has userid “jovyan”.
+
 ### Create the image
 
 Create an image by executing the following command in that directory (note that the line ends in a space followed by a dot):
@@ -42,7 +49,7 @@ Create an image by executing the following command in that directory (note that 
 docker build -t collatex .
 ```
 
-You only have to do this once. You can then run the image with the command below without rebuilding.
+This may take a long time, but you only have to do it once. If the build process errors out with a “context canceled” message, run it again and it should pick up where it left off. After you’ve completed the build, you can then run the image with the command below without rebuilding.
 
 ### Run the image
 

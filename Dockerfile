@@ -1,6 +1,8 @@
-FROM python:3
+FROM jupyter/datascience-notebook
+USER root
 RUN apt-get -y update
 RUN apt-get -y install graphviz
+USER jovyan
 RUN pip install ipython
 RUN pip install collatex
 RUN pip uninstall -y networkx
