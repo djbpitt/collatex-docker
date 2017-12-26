@@ -41,6 +41,7 @@ CMD ["start-notebook.sh"]
 Create the following file in the same directory, and call it “start-notebook.sh”
 
 ```bash
+#!/bin/bash
 exec jupyter notebook --NotebookApp.token='' &> /dev/null &
 exec bash
 ```
