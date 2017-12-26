@@ -107,7 +107,7 @@ Command | What it does
 
 1. Documentation for the Jupyter base image is available at <https://hub.docker.com/r/jupyter/datascience-notebook/>.
 1. The strategy for starting both a notebook server and an interactive command line simultaneously is partially based on <https://stackoverflow.com/questions/34865097/run-jupyter-notebook-in-the-background-on-docker>.
-1. The `docker run` command uses the following arguments (the explanation below is copied from <https://djangostars.com/blog/what-is-docker-and-how-to-use-it-with-python/>):
+1. The `docker run` command uses the following arguments (the explanation below is derived from <https://djangostars.com/blog/what-is-docker-and-how-to-use-it-with-python/>):
 	* `-t` flag assigns a pseudo-tty or terminal inside the new container.
 	* `-i` flag allows you to make an interactive connection by grabbing the standard input (STDIN) of the container.
 	* `--rm` flag automatically removes the container when the process exits. By default, containers are not deleted. This container exists as long as the shell session is active, and terminates when we exit from the session.
