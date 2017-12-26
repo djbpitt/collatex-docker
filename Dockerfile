@@ -11,6 +11,4 @@ RUN pip uninstall -y networkx
 RUN pip install -Iv networkx==1.11
 RUN pip install python-levenshtein
 RUN pip install graphviz
-# EXPOSE 8888
-# ENTRYPOINT start-notebook.sh --NotebookApp.token=''
 CMD ["start-notebook.sh"]
