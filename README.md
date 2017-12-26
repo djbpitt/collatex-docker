@@ -47,7 +47,7 @@ exec bash
 
 Notes
 
-* `apt-get` and the `COPY` and `RUN` commands for start-notebook.sh, at the top of “Dockerfile”, must be run as root. 
+* `apt-get` and the `COPY` and `RUN` commands for `start-notebook.sh`, at the top of “Dockerfile”, must be run as root. 
 * The user created by the Jupyter base image has userid `jovyan`.
 
 ### Create the image
@@ -81,7 +81,7 @@ Run the image by executing the following command:
 Notes:
 
 * *Windows users* must follow the instructions at <https://rominirani.com/docker-on-windows-mounting-host-directories-d96f3f056a2c> in order to mount the local volume inside the container.
-* *All users* must change the argument to the `-v` switch so that the part before the colon is a *full* path to a directory that exists on *their* local file systems. In the section above, we created a `work` directory in a specific location for that purpose, but you can mount any local directory instead. The part after the colon doesn’t change; whatever directory you have created will be accessible inside the container at the address /home/jovyan/work.
+* *All users* must change the argument to the `-v` switch so that the part before the colon is a *full* path to a directory that exists on *their* local file systems. In the section above, we created a `work` directory in a specific location for that purpose, but you can mount any local directory instead. The part after the colon doesn’t change; whatever directory you specify will be accessible inside the container at the address `/home/jovyan/work`.
 * If you are using port 8888 for another purpose on your host machine, change the number before the colon in the argument to the `-p` switch. For example, to access the notebook at <http://localhost:8889>, use `-p 8889:8888`. Do not change the number after the colon.
 
 The command above does the following:
