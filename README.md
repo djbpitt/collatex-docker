@@ -80,13 +80,14 @@ Run the image by executing the following command:
 
 Notes:
 
-* *You must change the argument to the `-v` switch* so that the part before the colon is a *full* path to a directory that exists on *your* local file system. In the section above, we created a **work** directory for that purpose, but you can mount any local directory instead. The part after the colon doesn’t change; whatever directory you have created will be accessible inside the container at the address **/home/jovyan/work**.
-* If you are using port 8888 for another purpose on your host machine, change the number before the colon in the argument to the `-p` switch. For example, to access the notebook at <http://localhost:8889>, use `-p 8889:8888`.
+* Windows users must follow the instructions at <https://rominirani.com/docker-on-windows-mounting-host-directories-d96f3f056a2c> in order to mount the local volume inside the container.
+* *All users must change the argument to the `-v` switch* so that the part before the colon is a *full* path to a directory that exists on *their* local file systems. In the section above, we created a **work** directory for that purpose, but you can mount any local directory instead. The part after the colon doesn’t change; whatever directory you have created will be accessible inside the container at the address **/home/jovyan/work**.
+* If you are using port 8888 for another purpose on your host machine, change the number before the colon in the argument to the `-p` switch. For example, to access the notebook at <http://localhost:8889>, use `-p 8889:8888`. Do not change the number after the colon.
 
 The command above does the following:
 
 * Deposits you at the command line of a Unix virtual machine, where you will be logged in as userid “jovyan”. You can then start an interactive python session and use **CollateX** as you normally would.
-* Starts a Jupyter notebook server inside the container, which you can access from your local machine at <http://localhost:8888>. 
+* Starts a Jupyter notebook server inside the container, which you can access from your local machine at <http://localhost:8888>.
 * Mount the local directory **/Users/djb/collatex-docker/work** inside the container as **/home/jovyan/work collatex**. Anything already in that directory when you launch the container will be accessible inside the container, and anything you write into that directory while inside the container will remain accessible on the host machine after the container exits.
 
 ## Cleaning up
