@@ -60,15 +60,31 @@ docker build -t collatex .
 
 This may take a long time, but you only have to do it once. If the build process errors out with a “context canceled” message, run it again and it should pick up where it left off. After you’ve completed the build, you can then run the image with the command below without rebuilding.
 
+### Create a workspace
+
+Inside the directory where you are configuring the container, run the following command
+
+```bash
+mkdir work
+```
+
+Normally information on the local file system is not accessible inside the container, and files written inside the container disappear when the container exits. We configure the **work** directory to hold persistent data, that is, local files that we want to be accessible inside the container, as well as files created inside the container that we want to be accessible after the container exits.
+
 ### Run the image
 
 Run the image by executing the following command:
 
 ```
-docker run -i -t --rm collatex
+ docker run -it -p 8888:8888 --rm -v /Users/djb/collatex-docker/work:/home/jovyan/work collatex
 ```
 
-The preceding steps will deposit you at the command line of a Unix virtual machine, where you will be logged in as root. You can then start an interactive python session and use **CollateX** as you normally would.
+*You must change the argument to the `-v` switch* so that the part before the colon is a *full* path to a directory that exists on *your* local file system. We created a **work** directory for that purpose, but you can mount any local directory. The part after the colon doesn’t change; whatever directory you have created will be accessible inside the container at the address **/home/jovyan/work**.
+
+The command above does the following:
+
+* Deposit you at the command line of a Unix virtual machine, where you will be logged in as userid jovyan. You can then start an interactive python session and use **CollateX** as you normally would.
+* Start a Jupyter notebook server inside the container, which you can access from your local machine at <http://localhost:8888>. 
+* Mount the local directory **/Users/djb/collatex-docker/work** inside the container as **/home/jovyan/work collatex**. Anything already in that directory when you launch the container will be visible, and anything you write into that directory while inside the container will remain accessible after the container exits.
 
 ## Cleaning up
 
