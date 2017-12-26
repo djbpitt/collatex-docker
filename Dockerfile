@@ -2,6 +2,8 @@ FROM jupyter/datascience-notebook
 USER root
 RUN apt-get -y update
 RUN apt-get -y install graphviz
+COPY start-notebook.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/start-notebook.sh
 USER jovyan
 RUN pip install ipython
 RUN pip install collatex
@@ -10,5 +12,5 @@ RUN pip install -Iv networkx==1.11
 RUN pip install python-levenshtein
 RUN pip install graphviz
 # EXPOSE 8888
-# ENTRYPOINT start-notebook.sh --NotebookApp.token='' &
-# CMD ["bash"]
+# ENTRYPOINT start-notebook.sh --NotebookApp.token=''
+CMD ["start-notebook.sh"]

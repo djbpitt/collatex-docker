@@ -26,6 +26,8 @@ FROM jupyter/datascience-notebook
 USER root
 RUN apt-get -y update
 RUN apt-get -y install graphviz
+COPY start-notebook.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/start-notebook.sh
 USER jovyan
 RUN pip install ipython
 RUN pip install collatex
@@ -33,14 +35,19 @@ RUN pip uninstall -y networkx
 RUN pip install -Iv networkx==1.11
 RUN pip install python-levenshtein
 RUN pip install graphviz
-# EXPOSE 8888
-# ENTRYPOINT start-notebook.sh --NotebookApp.token='' &
-# CMD ["bash"]
+CMD ["start-notebook.sh"]
+```
+
+Create the following file in the same directory, and call it “start-notebook.sh”
+
+```bash
+exec jupyter notebook --NotebookApp.token='' &> /dev/null &
+exec bash
 ```
 
 Notes
 
-* `apt-get` must run as root. 
+* `apt-get` and the `COPY` and `RUN` commands must run as root. 
 * The user created by the jupyter base image has userid “jovyan”.
 
 ### Create the image
@@ -75,6 +82,8 @@ Command | What it does
 `docker rmi <image-id>` | remove the image
 
 ## Explanation
+
+The strategy for starting both a notebook server and an interactive command line is based on <https://stackoverflow.com/questions/34865097/run-jupyter-notebook-in-the-background-on-docker>.
 
 The `build` command uses the following arguments (the explanation below is copied from <https://djangostars.com/blog/what-is-docker-and-how-to-use-it-with-python/>):
 
