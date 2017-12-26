@@ -111,11 +111,3 @@ Command | What it does
 	* `-i` flag allows you to make an interactive connection by grabbing the standard input (STDIN) of the container.
 	* `--rm` flag automatically removes the container when the process exits. By default, containers are not deleted. This container exists as long as the shell session is active, and terminates when we exit from the session.
 	* `-v /Users/djb/collatex-docker/work:/home/jovyan/work` makes the `/Users/djb/collatex-docker/work` directory accessible inside the container as `/home/jovyan/work`. Before running the command, you must change the part before the colon to the *full* path to an *existing* directory on *your* own local filesystem.
-
-----
-
-## Notes
-
-**[To be integrated into documentation if we launch notebook separately and need docker-compose]**
- 
-Alexandria uses a **docker-compose.yml** file, which can be used to launch multiple docker images at the same time. See the example at <https://github.com/Pittsburgh-NEH-Institute/Institute-Materials-2017/blob/master/schedule/week_3/alexandria.md>, which launches three images, and also mounts a file-system entry point for the last of them.
