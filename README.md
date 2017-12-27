@@ -90,7 +90,7 @@ The command above does the following:
 * Starts a container from your Docker image.
 * Deposits you at the command line of a Unix virtual machine, where you will be logged in as userid `jovyan` at `/home/jovyan`. You can then start an interactive Python session and use CollateX as you normally would.
 * Starts a Jupyter notebook server inside the container, which you can access from your local machine at <http://localhost:8888>.
-* Mounts the local directory `/Users/djb/collatex-docker/work` inside the container as `/home/jovyan/work collatex`. Anything already in that directory when you launch the container will be accessible inside the container, and anything you write into that directory while inside the container will remain accessible on the host machine after the container exits.
+* Mounts the local directory `/Users/djb/collatex-docker/work` inside the container as `/home/jovyan/work`. Anything already in that directory when you launch the container will be accessible inside the container, and anything you write into that directory while inside the container will remain accessible on the host machine after the container exits.
 
 ## Cleaning up
 
