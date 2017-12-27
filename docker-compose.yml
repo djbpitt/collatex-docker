@@ -1,0 +1,12 @@
+version: "3"
+services:
+  collatex:
+    image: collatex
+    ports:
+      - "8888:8888"
+    volumes:
+      - "/Users/djb/collatex-docker/work:/home/jovyan/work"
+    environment:
+      - BASE_URI= http://localhost:8888
+    stdin_open: true
+    tty: true
