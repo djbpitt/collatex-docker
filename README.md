@@ -17,6 +17,9 @@ Last revised 2017-12-26
 
 Check the “What to know before you install” section at [Docker for Mac (CE)](https://docs.docker.com/docker-for-mac/install/) or [Docker for Windows (CE)](https://docs.docker.com/docker-for-windows/install/). If you meet these requirements, install the stable channel release of Docker CE. If not, install [Docker toolbox](https://docs.docker.com/toolbox/overview/) instead.
 
+#### Enabling Virtualization on Windows
+Following Docker installation, you will likely be prompted by Docker to enable Hypercard-V. On reboot, an attempt to start Docker may raise an error message prompting you to enable hardware-assisted virtualization in your BIOS. First read more about [virtualization and how to check your settings here](https://docs.docker.com/docker-for-windows/troubleshoot/#virtualization-must-be-enabled). Accessing your BIOS depends on which company designed your computer's motherboard (its hardware) and the version of Windows you are running. (For example, on one tester's computer running Windows 10 Education, the BIOS was designed by the ASUS company to work with an Intel Xeon 2.4 Ghz processor. This design info was necessary to look up how to enable virtualization on this particular machine. In our example, two settings needed to be changed to "enabled": Intel Virtualization Tech and IntelVT for Directed I/O.) The specific settings and their location in the BIOS will vary considerably and you may need to test this a few times for Docker to run.
+
 ### Configure a Docker image
 
 Create the following file in an otherwise empty directory, and call it “Dockerfile”:
