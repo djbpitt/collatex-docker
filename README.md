@@ -117,4 +117,4 @@ Command | What it does
 	* `-t` flag assigns a pseudo-tty or terminal inside the new container.
 	* `-i` flag allows you to make an interactive connection by grabbing the standard input (STDIN) of the container.
 	* `--rm` flag automatically removes the container when the process exits. By default, containers are not deleted. This container exists as long as the shell session is active, and terminates when we exit from the session.
-	* `-v /Users/djb/collatex-docker/work:/home/jovyan/work` makes the `/Users/djb/collatex-docker/work` directory accessible inside the container as `/home/jovyan/work`. Before running the command, you must change the part before the colon to the *full* path to an *existing* directory on *your* own local filesystem.
+	* `-v '/Users/djb/collatex-docker/work:/home/jovyan/work'` makes the `/Users/djb/collatex-docker/work` directory accessible inside the container as `/home/jovyan/work`. Before running the command, you must change the part before the colon to the *full* path to an *existing* directory on *your* own local filesystem.
