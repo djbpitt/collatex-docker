@@ -22,29 +22,32 @@ Following Docker installation, Windows users are likely to be prompted by Docker
 
 ### Configure a Docker image
 
-Create the following file in an otherwise empty directory, and call it “Dockerfile”:
+Copy (or [download](Dockerfile)) the following text into a file called `Dockerfile` in an otherwise empty directory:
 
 ```bash
 FROM jupyter/datascience-notebook
 USER root
-RUN apt-get -y update
-RUN apt-get -y install graphviz libgraphviz-dev graphviz-dev pkg-config
-RUN apt-get install tofrodos
 COPY start-notebook.sh '/usr/local/bin'
-RUN fromdos '/usr/local/bin/start-notebook.sh'
-RUN chmod +x '/usr/local/bin/start-notebook.sh'
+RUN apt-get -y update && apt-get install -y \
+    graphviz \
+    libgraphviz-dev \
+    graphviz-dev \
+    pkg-config \
+    tofrodos \
+  && rm -rf /var/lib/apt/lists/* \
+  && fromdos '/usr/local/bin/start-notebook.sh' \
+  && chmod +x '/usr/local/bin/start-notebook.sh'
 USER jovyan
-RUN pip install ipython
 # Temporary fix because pip installs 2.1.2 instead of current 2.1.3rc
-RUN pip install -I collatex==2.1.3rc
-RUN pip uninstall -y networkx
-RUN pip install -Iv networkx==1.11
-RUN pip install python-levenshtein
-RUN pip install pygraphviz
+RUN pip install -I collatex==2.1.3rc \
+  && pip uninstall -y networkx \
+  && pip install -Iv networkx==1.11 \
+  && pip install python-levenshtein \
+  && pip install pygraphviz
 CMD ["start-notebook.sh"]
 ```
 
-Create the following file in the same directory, and call it “start-notebook.sh”
+Copy (or [download](start-notebook.sh)) the following text into a file called `start-notebook.sh` in the same directory:
 
 ```bash
 #!/bin/bash
@@ -52,10 +55,7 @@ exec jupyter notebook --NotebookApp.token='' &> /dev/null &
 exec bash
 ```
 
-Notes
-
-* `apt-get` and the `COPY` and `RUN` commands for `start-notebook.sh`, at the top of “Dockerfile”, must be run as root. 
-* The user created by the Jupyter base image has userid `jovyan`.
+Note: The user created by the Jupyter base image has userid `jovyan`.
 
 ### Create the image
 
