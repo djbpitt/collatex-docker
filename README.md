@@ -97,6 +97,49 @@ The command above does the following:
 * Starts a Jupyter notebook server inside the container, which you can access from your local machine at <http://localhost:8888>.
 * Mounts the local directory `/Users/djb/collatex-docker/work` inside the container as `/home/jovyan/work`. Anything already in that directory when you launch the container will be accessible inside the container, and anything you write into that directory while inside the container will remain accessible on the host machine after the container exits.
 
+## Testing your container
+
+### At the command line
+
+Inside the container, start a Python session and run:
+
+```python
+from collatex import *
+collation = Collation()
+collation.add_plain_witness("A", "The quick brown fox jumps over the dog.")
+collation.add_plain_witness("B", "The brown fox jumps over the lazy dog.")
+alignment_table = collate(collation)
+print(alignment_table)
+```
+
+You should see:
+
+```
++---+-----+-------+--------------------------+------+------+
+| A | The | quick | brown fox jumps over the | -    | dog. |
+| B | The | -     | brown fox jumps over the | lazy | dog. |
++---+-----+-------+--------------------------+------+------+
+```
+
+### Inside a Jupyter notebook
+
+Inside a cell, run:
+
+```python
+from collatex import *
+collation = Collation()
+collation.add_plain_witness("A", "The quick brown fox jumps over the dog.")
+collation.add_plain_witness("B", "The brown fox jumps over the lazy dog.")
+alignment_table = collate(collation)
+print(alignment_table)
+collate(collation,output="svg")
+```
+
+You should see:
+
+![Variant graph](variant-graph.png)
+
+
 ## Cleaning up
 
 Building Docker images may create intermediate images or containers (instances of images) that do not remove themselves cleanly when they are no longer needed. These are harmless, but messy, and they do take up disk space. The following commands will help manage them. Note that before you remove an image you need to remove any containers that refer to it.
