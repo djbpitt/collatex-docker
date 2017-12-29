@@ -135,7 +135,7 @@ print(alignment_table)
 collate(collation,output="svg")
 ```
 
-You should see:
+You should see the same alignment table as above, followed by:
 
 ![Variant graph](variant-graph.png)
 
