@@ -5,7 +5,7 @@ Last revised 2017-12-29
 
 ## Rationale
 
-[CollateX](https://pypi.python.org/pypi/collatex) has a small number of dependencies that cause problems for some users. Distributing CollateX in a [Docker](https://www.docker.com/) container means that the dependences can be packaged with it. Specifically:
+[CollateX](https://pypi.python.org/pypi/collatex) has a small number of dependencies that cause problems for some users. Distributing CollateX in a [Docker](https://www.docker.com/) container means that the dependencies can be packaged with it. Specifically:
 
 * CollateX requires version 1.11 of the [NetworkX](https://pypi.python.org/pypi/networkx) library, but the most recent release, 2.0, uses a different API, which breaks CollateX. By running CollateX inside a Docker container, users who need later versions of NetworkX for other purposes will not have to downgrade their general Python library installation or create a separate Python environment just to run CollateX.
 * CollateX uses the [python-Levenshtein](https://pypi.python.org/pypi/python-Levenshtein) package to support near matching. This package is a C library that is built on the local system, and not all users will have installed the compilers the build requires.
