@@ -12,8 +12,6 @@ RUN apt-get -y update && apt-get install -y \
   && chmod +x '/usr/local/bin/start-notebook.sh'
 USER jovyan
 RUN pip install --upgrade --pre collatex \
-  && pip uninstall -y networkx \
-  && pip install -Iv networkx==1.11 \
   && pip install python-levenshtein \
   && pip install pygraphviz
 CMD ["start-notebook.sh"]
