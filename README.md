@@ -1,7 +1,7 @@
 # Running CollateX inside a Docker container
 
 David J. Birnbaum and Ronald Haentjens Dekker  
-Last revised 2017-12-29
+Last revised 2018-01-01
 
 ## Rationale
 
