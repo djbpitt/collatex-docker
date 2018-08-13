@@ -13,5 +13,5 @@ RUN apt-get -y update && apt-get install -y \
 USER jovyan
 RUN pip install --upgrade --pre collatex \
   && pip install python-levenshtein \
-  && pip install pygraphviz
+  && pip install graphviz
 CMD ["start-notebook.sh"]

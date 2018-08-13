@@ -1,24 +1,27 @@
 # Running CollateX inside a Docker container
 
 David J. Birnbaum and Ronald Haentjens Dekker  
-Last revised 2018-01-01
+Last revised 2018-08-13
 
 ## Rationale
 
-[CollateX](https://pypi.python.org/pypi/collatex) has a small number of dependencies that cause problems for some users. Distributing CollateX in a [Docker](https://www.docker.com/) container means that the dependencies can be packaged with it. Specifically:
+[CollateX](https://pypi.python.org/pypi/collatex) has a small number of dependencies that cause problems for some users. Distributing CollateX in a [Docker](https://www.docker.com/) container means that the dependencies can be packaged with it, and do not need to be installed separately by the user. Specifically:
 
-* CollateX requires version 1.11 of the [NetworkX](https://pypi.python.org/pypi/networkx) library, but the most recent release, 2.0, uses a different API, which breaks CollateX. By running CollateX inside a Docker container, users who need later versions of NetworkX for other purposes will not have to downgrade their general Python library installation or create a separate Python environment just to run CollateX.
 * CollateX uses the [python-Levenshtein](https://pypi.python.org/pypi/python-Levenshtein) package to support near matching. This package is a C library that is built on the local system, and not all users will have installed the compilers the build requires.
-* CollateX uses the [PyGraphviz](https://pypi.python.org/pypi/pygraphviz) package to support SVG output of the variant graph. Like python-Levenshtein, PyGraphviz has to be compiled on the local machine. 
+
+The following are historical dependencies that are not an issue with CollateX beginning with 2.1.3rc2, but that may cause problems for users of earlier versions:
+
+* CollateX before 2.1.3rc2 required version 1.11 of the [NetworkX](https://pypi.python.org/pypi/networkx) library, and NetworkX beginning with 2.0 uses a different API, which was incompatible with those earlier versions of CollateX. By running CollateX inside a Docker container, users who needed later versions of NetworkX for other purposes could avoid having to downgrade their general Python library installations or create a separate Python environment just to run CollateX. CollateX beginning with 2.1.3rc2 is compatible with NetworkX 2.0 and later, and therefore requires no special accommodations.
+* CollateX before 2.1.3rc2 used the [PyGraphviz](https://pypi.python.org/pypi/pygraphviz) package to support SVG output of the variant graph. Like python-Levenshtein, PyGraphviz has to be compiled on the local machine, which was problematic for users who do not have compiler tools installed (typically on Windows). CollateX beginning with 2.1.3rc2 replaces PyGraphviz with the Python Graphviz package, which can be installed without compiler tools.
 
 ## Instructions
 
 ### Install Docker
 
-Check the “What to know before you install” section at [Docker for Mac (CE)](https://docs.docker.com/docker-for-mac/install/) or [Docker for Windows (CE)](https://docs.docker.com/docker-for-windows/install/). If you meet these requirements, install the stable channel release of Docker CE. If not, install [Docker toolbox](https://docs.docker.com/toolbox/overview/) instead. Linux versions for different distributions are available at <https://www.docker.com/community-edition#/download>.
+Check the “What to know before you install” section at [Docker for Mac (CE)](https://docs.docker.com/docker-for-mac/install/) or [Docker for Windows (CE)](https://docs.docker.com/docker-for-windows/install/). If you meet these requirements, install the stable channel release of Docker CE. If not, install [Docker toolbox](https://docs.docker.com/toolbox/overview/) instead. Linux versions for different distributions are available from links at <https://www.docker.com/community-edition#/download>.
 
 #### For Windows users
-Following Docker installation, Windows users are likely to be prompted by Docker to enable Hypercard-V in order to provide the virtualization on which Docker relies. The first time you try to start Docker after a reboot, you may see an error message prompting you to enable hardware-assisted virtualization in your BIOS. First read more about [virtualization and how to check your settings here](https://docs.docker.com/docker-for-windows/troubleshoot/#virtualization-must-be-enabled). Accessing your BIOS depends on which company designed your motherboard (its hardware) and the version of Windows you are running. (For example, on one tester’s computer running Windows 10 Education, the BIOS was designed by the ASUS company to work with an Intel Xeon 2.4 Ghz processor. This information was needed to look up how to enable virtualization on this particular machine. In this case, two settings needed to be changed to “enabled”: Intel Virtualization Tech and IntelVT for Directed I/O.) The specific settings and their location in the BIOS will vary considerably, and you may need to test this a few times in order to get Docker to run.
+Following Docker installation, Windows users are likely to be prompted by Docker to enable Hypercard-V in order to provide the virtualization on which Docker relies. The first time you try to start Docker after a reboot, you may see an error message prompting you to enable hardware-assisted virtualization in your BIOS. First read more about [virtualization and how to check your settings here](https://docs.docker.com/docker-for-windows/troubleshoot/#virtualization-must-be-enabled). Accessing your BIOS depends on which company designed your motherboard (its hardware) and the version of Windows you are running. (For example, on one tester’s computer running Windows 10 Educational, the BIOS was designed by the ASUS company to work with an Intel Xeon 2.4 Ghz processor. This information was needed to look up how to enable virtualization on this particular machine. In this case, two settings needed to be changed to “enabled”: Intel Virtualization Tech and IntelVT for Directed I/O.) The specific settings and their location in the BIOS will vary considerably, and you may need to test this a few times in order to get Docker to run.
 
 ### Configure a Docker image
 
@@ -40,7 +43,7 @@ RUN apt-get -y update && apt-get install -y \
 USER jovyan
 RUN pip install --upgrade --pre collatex \
   && pip install python-levenshtein \
-  && pip install pygraphviz
+  && pip install graphviz
 CMD ["start-notebook.sh"]
 ```
 
